@@ -9,6 +9,7 @@
 
  btn_enviar.addEventListener("click", (evt)=>{
     enviarCadastro();
+    limparCadastro();
  })
 
  function limparCadastro(){
@@ -21,32 +22,28 @@
  }
 
  function enviarCadastro(){
-    const dados = {
-        nome: txtNome.value,
-        tel: txtTel.value,
-        face: txtFace.value,
-        insta: txtInsta.value,
-        categoria: sel_Cat.value,
-        descricao: txtDescricao.value
-       
-    };
+    const formData = new FormData();
+    formData.append('nome', txtNome.value);
+    formData.append('tel', txtTel.value);
+    formData.append('face', txtFace.value);
+    formData.append('insta', txtInsta.value);
+    formData.append('categoria', sel_Cat.value);
+    formData.append('descricao', txtDescricao.value);
+    formData.append('imagem', img_logo.files[0]); // assumindo que img_logo é um input do tipo file
+
     fetch("http://192.168.1.58:8080/cadastrar", {
         method: "POST",
-        body: JSON.stringify(dados),
-        headers: {
-            "Content-Type": "application/json",
-        },
+        body: formData, // enviando como FormData
     })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.id) {
-                limparCadastro(); 
-            }
-        })
-        .catch((error) => console.error(error));
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.id) {
+            limparCadastro(); 
+        }
+    })
+    .catch((error) => console.error(error));
 }
 
- 
  // Função para fazer uma solicitação à API e obter os dados
 async function fetchBusinesses() {
     try {
@@ -67,7 +64,8 @@ function createBusinessCard(business) {
             <!-- Flex container para centralizar e alinhar itens verticalmente -->
             <div class="d-flex justify-content-center align-items-center mb-3">
                 <div class="me-3">
-                    <img src="${business.logo}" alt="" class="company-logo" width="50"> <!-- Usando a logo fornecida pela API -->
+                <img src="data:image/jpeg;base64,${business.imagem}" alt="${business.nome}" class="company-logo" width="50">
+
                 </div>
                 <!-- Título da empresa -->
                 <h3 class="card-title text-center mb-0">${business.nome}</h3>
