@@ -47,7 +47,7 @@
  // Função para fazer uma solicitação à API e obter os dados
 async function fetchBusinesses() {
     try {
-        const response = await fetch('http://192.168.1.58:8080/listarTodos');
+        const response = await fetch('http://192.168.1.58:8080/listarTodosAprovados');
         const data = await response.json();
         return data;
     } catch (error) {

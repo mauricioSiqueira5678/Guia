@@ -16,13 +16,23 @@ function pendentes() {
 
                 const visualizarButtonEdit = document.createElement("img");
                 visualizarButtonEdit.className = "imgUsuario";
-                visualizarButtonEdit.src = "../imgs/edit.png";
+                visualizarButtonEdit.src = "../img/edit.svg";
                 statusCell.appendChild(visualizarButtonEdit);
 
                 const visualizarButtonDelete = document.createElement("img");
                 visualizarButtonDelete.className = "imgUsuario"
-                visualizarButtonDelete.src = "../imgs/lixeira (1).png";
+                visualizarButtonDelete.src = "../img/delete.svg";
                 statusCell.appendChild(visualizarButtonDelete);
+
+                const visualizarButtonAprovar = document.createElement("img");
+                visualizarButtonAprovar.className = "imgUsuario"
+                visualizarButtonAprovar.src = "../img/aprovado.png";
+                statusCell.appendChild(visualizarButtonAprovar);
+                visualizarButtonAprovar.addEventListener("click", () => {
+                    clienteAprovado(nomeCell);
+                    pendentes();
+                });
+
                 
                 nomeCell.innerHTML = item.nome;
                 TelefoneCell.innerHTML = item.tel;
@@ -37,3 +47,32 @@ function pendentes() {
 }
 // Chamar a função para renderizar a tabela de vendas
 pendentes();
+
+function aprovarCliente(nome) {
+    // Fazer uma solicitação POST para enviar o nome
+    fetch('http://192.168.1.58:8080/aprovarCadastroPorNome', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nome: nome }),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Cliente aprovado com sucesso!');
+        } else {
+            console.error('Erro ao aprovar cliente!');
+        }
+    })
+    .catch(error => {
+        console.error('Erro na solicitação POST:', error);
+    });
+}
+
+function clienteAprovado(nomeCell) {
+    // Capturar o nome da linha clicada
+    const nome = nomeCell.innerText;
+
+    // Chamar a função para enviar o nome via POST
+    aprovarCliente(nome);
+}
