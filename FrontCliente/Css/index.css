@@ -55,6 +55,7 @@ header h1 {
 .navbar {
     margin-bottom: 20px; /* Espaço entre a navbar e o conteúdo */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Efeito de sombra para profundidade */
+    border-bottom: 5px solid #0a0b0b;
 }
 .modal-content {
     padding: 20px; /* Espaço interno para o modal */
@@ -97,11 +98,17 @@ footer p {
     overflow: hidden; /* Garante que as bordas arredondadas sejam aplicadas às imagens também */
     transition: transform 0.3s, box-shadow 0.3s; /* Transição suave para efeitos */
     background-color: #ffffff; /* Cor de fundo branca */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: border 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05); /* Aumenta ligeiramente o cartão ao passar o mouse */
+    transform: scale(1.02); /* Aumenta ligeiramente o cartão ao passar o mouse */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais profunda ao passar o mouse */
+    border-image: linear-gradient(45deg, rgb(8, 7, 8), rgb(11, 11, 10));
+    border-image-slice: 1;
+   
 }
 
 .card-body {
@@ -135,5 +142,64 @@ footer p {
 .social-btns img:hover {
     transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
 }
+
+/* Estilos para a paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    color: #0a0a0b;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.page-link:hover {
+    background-color: #0a0a0b;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efeito de sombra no hover */
+}
+
+.page-item.active .page-link {
+    background-color: #0a0a0b;
+    color: #fff;
+    border-color: #0a0a0b;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+}
+
+.mensagem {
+    display: none;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.mensagem-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensagem-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
 
 

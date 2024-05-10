@@ -2,3 +2,56 @@
     cursor: pointer;
     width: 20px;
 }
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Tipografia agradável */
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    color: #333; /* Cor do texto que oferece bom contraste */
+}
+header {
+    background: linear-gradient(45deg, #6CC1FF, #3A6073); /* Gradiente inspirado em dopamina */
+    color: white;
+    padding: 20px 0;
+    border-bottom: 5px solid #2C3E50; /* Bordas definidas */
+    border-radius: 15px; /* Bordas arredondadas */
+}
+header h1 {
+    margin: 0;
+    animation: kinetic 5s infinite; /* Tipografia cinética */
+}
+@keyframes kinetic {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+.navbar {
+    margin-bottom: 20px; /* Espaço entre a navbar e o conteúdo */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Efeito de sombra para profundidade */
+    border-bottom: 5px solid #0a0b0b;
+}
+
+footer {
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #0a0b0b; /* Cor da fonte que oferece contraste */
+    padding: 20px 0; /* Espaçamento interno */
+    border-top: 5px solid #0a0b0b; /* Borda superior para definição */
+}
+footer p {
+    margin: 0; /* Remove a margem padrão do parágrafo */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+#sessionTable {
+    width: 100%;
+    height: 500px;
+    background-color: #ffffff;
+    overflow: auto;
+}

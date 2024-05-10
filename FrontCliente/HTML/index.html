@@ -9,6 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/FrontCliente/Css/index.css">
     <link rel="icon" href="/FrontCliente/imgsClientes/favcom.png" type="image/x-icon">
+    <meta name="description" content="Encontre negócios locais e serviços na sua área.">
 
 </head>
 
@@ -36,37 +37,46 @@
                             Categoria
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Comercios de Alimentos</a></li>
-                            <li><a class="dropdown-item" href="#">Hortfrut</a></li>
-                            <li><a class="dropdown-item" href="#">Prestação de Serviços</a></li>
+                            <li><a class="dropdown-item" href="#" data-categoria="alimentos">Comercios de Alimentos</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-categoria="hortfrut">Hortfrut</a></li>
+                            <li><a class="dropdown-item" href="#" data-categoria="servicos">Prestação de Serviços</a>
+                            </li>
                         </ul>
                     </li>
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" id="form-pesquisa">
+                    <input class="form-control me-2" type="search" id="input-pesquisa" placeholder="Pesquisar"
+                        aria-label="Pesquisar">
                     <img src="/FrontCliente/imgsClientes/pesquisar.svg" id="btn_pesq"
                         style="width: 30px; cursor: pointer;" alt="">
                 </form>
+
             </div>
         </div>
     </nav>
 
+    <div id="mensagemConteiner" class="mensagemConteiner">
+        <div id="mensagemResposta" class="mensagem"></div>
+    </div>
     <div class="modal fade" id="janelaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Enviar meu cadastro</h1>
-                    <img src="/FrontCliente/imgsClientes/enviar.png" type="button" data-bs-dismiss="modal" aria-label="Close" style="width: 30px;">
+                    <img src="/FrontCliente/imgsClientes/enviar.png" type="button" data-bs-dismiss="modal"
+                        aria-label="Close" style="width: 30px;">
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="txtNome" class="form-label">Nome Fantasia</label>
-                        <input type="text" class="form-control" id="txtNome">
+                        <input type="text" class="form-control" id="txtNome" required>
                     </div>
                     <div class="mb-3">
                         <label for="txtTel" class="form-label">Whatssapp</label>
-                        <input type="tel" class="form-control" id="txtTel">
+                        <input type="tel" class="form-control" id="txtTel" required>
                     </div>
                     <div class="mb-3">
                         <label for="txtFace" class="form-label">Facebook</label>
@@ -86,11 +96,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="txtDescricao" class="form-label">Descrição da Empresa</label>
-                        <textarea class="form-control" id="txtDescricao" rows="3"></textarea>
+                        <textarea class="form-control" id="txtDescricao" rows="3"></textarea required>
                     </div>
                     <div class="mb-3">
                         <label for="img_logo" class="form-label">Logo da Empresa</label>
-                        <input class="form-control" type="file" id="img_logo">
+                        <input class="form-control" type="file" id="img_logo" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -108,12 +118,24 @@
     <section id="business-list" class="container mt-4">
         <!-- Os negócios serão inseridos aqui pelo JavaScript -->
     </section>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+          </li>
+          <!-- Os números das páginas serão inseridos aqui pelo JavaScript -->
+          <li class="page-item">
+            <a class="page-link" href="#">Próximo</a>
+          </li>
+        </ul>
+      </nav>
     <footer class="container text-center mt-4">
         <p>Desenvolvido por Mauricio AP Siqueira Junior</p>
         <ul class="social-icons">
-            <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
-            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=35988101132" target="_blank"><img src="/FrontCliente/imgsClientes/whatsapp.svg" alt="" style="width: 20px; cursor: pointer;"></a></li>
+            <li><a href="mailto:exemplo@dominio.com" target="_blank"><img src="/FrontCliente/imgsClientes/gmail.svg" style="width: 20px; cursor: pointer;" alt=""></a></li>
+
+           
         </ul>
     </footer>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->

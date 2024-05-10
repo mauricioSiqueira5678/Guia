@@ -27,22 +27,23 @@
                         <a class="nav-link active" aria-current="page" href="/FrontCliente/HTML/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/FrontendGerenciador/html/aprovado.html">Cliente aprovado</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="/FrontendGerenciador/html/aprovado.html">Cliente aprovado</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/FrontendGerenciador/html/pendente.html">Cliente pendente</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="/FrontendGerenciador/html/pendente.html">Cliente pendente</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <img src="/FrontCliente/imgsClientes/pesquisar.svg" id="btn_pesq"
-                        style="width: 30px; cursor: pointer;" alt="">
+                <form class="d-flex" id="form-pesquisa">
+                    <input class="form-control me-2" type="search" id="input-pesquisa" placeholder="Pesquisar" aria-label="Pesquisar">
+                    <img src="/FrontCliente/imgsClientes/pesquisar.svg" id="btn_pesquisar" style="width: 30px; cursor: pointer;" alt="Pesquisar">
                 </form>
             </div>
         </div>
     </nav>
 
-    <section class="container mt-4">
+    <section class="container mt-4" id="sessionTable">
         <table class="table" id="tabelaPendentes">
             <thead>
                 <tr>
