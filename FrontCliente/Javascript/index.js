@@ -45,6 +45,8 @@ function enviarCadastro() {
             } else {
                 exibirMensagem('Dados incompletos ou inválidos.', 'erro');
             }
+
+            console.log(data.id)
         })
         .catch((error) => {
             console.error(error);

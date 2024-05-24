@@ -3,6 +3,8 @@ function pendentes(nomePesquisado) {
     let endpoint = 'http://192.168.1.58:8080/listarTodos';
 
     fetch(endpoint)
+
+    
         .then(res => res.json())
         .then(data => {
             const tabelaPendentes = document.querySelector("#tabelaPendentes tbody");
@@ -55,12 +57,15 @@ function pendentes(nomePesquisado) {
         });
 }
 
-// Função para aprovar um cliente pelo nome
 function clienteAprovado(nome) {
+    // Recupera o token de autenticação do armazenamento local
+    const authToken = localStorage.getItem('authToken');
+
     fetch('http://192.168.1.58:8080/aprovarCadastroPorNome', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authToken // Inclui o token no cabeçalho Authorization
         },
         body: JSON.stringify({ nome: nome }),
     })
@@ -76,6 +81,7 @@ function clienteAprovado(nome) {
             console.error('Erro na solicitação POST:', error);
         });
 }
+
 
 // Evento de clique para o botão de pesquisa
 document.getElementById('btn_pesquisar').addEventListener('click', function () {

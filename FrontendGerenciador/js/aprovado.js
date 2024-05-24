@@ -1,4 +1,16 @@
+const txtNome = document.getElementById("txtNome")
+const txtTel = document.getElementById("txtTel")
+const txtFace = document.getElementById("txtFace")
+const txtInsta = document.getElementById("txtInsta")
+const sel_Cat = document.getElementById("sel_Cat")
+const txtDescricao = document.getElementById("txtDescricao")
+const img_logo = document.getElementById("img_logo")
+
+
+
 // Função para atualizar a tabela com os dados pendentes ou filtrados por nome
+
+let clienteSelecionado = null;
 function pendentes(nomePesquisado) {
     let endpoint = 'http://192.168.1.58:8080/listarTodosAprovados';
 
@@ -27,19 +39,21 @@ function pendentes(nomePesquisado) {
                     visualizarButtonEdit.className = "imgUsuario";
                     visualizarButtonEdit.src = "../img/edit.svg";
                     statusCell.appendChild(visualizarButtonEdit);
+                    visualizarButtonEdit.addEventListener("click", (evt) => {
+                        clienteSelecionado = item;
+                        preencherFormulario();
+                        $('#janelaModal').modal('show');
+    
+                    });
 
                     const visualizarButtonDelete = document.createElement("img");
                     visualizarButtonDelete.className = "imgUsuario";
                     visualizarButtonDelete.src = "../img/delete.svg";
                     statusCell.appendChild(visualizarButtonDelete);
-
-                    const visualizarButtonAprovar = document.createElement("img");
-                    visualizarButtonAprovar.className = "imgUsuario";
-                    visualizarButtonAprovar.src = "../img/aprovado.png";
-                    statusCell.appendChild(visualizarButtonAprovar);
-                    visualizarButtonAprovar.addEventListener("click", () => {
-                        clienteAprovado(nomeCell.innerText);
-                    });
+                    visualizarButtonDelete.addEventListener("click", (evt) => {
+                        const nome = evt.target.parentNode.parentNode.querySelector('td:first-child').textContent;
+                        deletarCadastro(nome);
+                    })
 
                     // Preenchendo as células com os dados
                     nomeCell.innerText = item.nome;
@@ -63,3 +77,47 @@ document.getElementById('btn_pesquisarAprovado').addEventListener('click', funct
 
 // Inicializa a tabela de pendentes
 pendentes();
+
+//Função deletar produto
+function deletarCadastro(nome) {
+    // Recupera o token de autenticação do armazenamento local
+    const authToken = localStorage.getItem('authToken');
+
+    fetch(`http://192.168.1.58:8080/deletarPorNome/${nome}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + authToken // Inclui o token no cabeçalho Authorization
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log('Cadastro deletado com sucesso!');
+                pendentes();
+            } else {
+                console.error('Erro ao deletar cadastro!');
+            }
+        })
+        .catch(error => {
+            console.error('Erro na solicitação DELETE:', error);
+        });
+}
+
+// Função para preencher o formulário com os dados do cliente selecionado
+function preencherFormulario() {
+    // Verifica se há um cliente selecionado
+    if (clienteSelecionado) {
+        // Preenche os campos do formulário com os dados do cliente
+        document.getElementById('txtNome').value = clienteSelecionado.nome;
+        document.getElementById('txtTel').value = clienteSelecionado.tel;
+        document.getElementById('txtFace').value = clienteSelecionado.face;
+        document.getElementById('txtInsta').value = clienteSelecionado.insta;
+        document.getElementById('sel_Cat').value = clienteSelecionado.categoria;
+        document.getElementById('txtDescricao').value = clienteSelecionado.descricao;
+        //document.getElementById('img_logo').value = clienteSelecionado.imagem;
+    }
+}
+
+preencherFormulario();
+
+
+
